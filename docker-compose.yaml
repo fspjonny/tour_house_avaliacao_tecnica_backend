@@ -1,0 +1,38 @@
+services:
+  db:
+    image: postgres:17.0-alpine3.20
+    container_name: postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: desafioDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    depends_on:
+      - db
+    environment:
+      DJANGO_SUPERUSER_USERNAME: admin
+      DJANGO_SUPERUSER_PASSWORD: admin1234
+      DJANGO_SUPERUSER_EMAIL: admin@email.com
+    command: >
+      /bin/sh -c "
+      poetry run python manage.py makemigrations &&
+      poetry run python manage.py migrate &&
+      (poetry run python manage.py createsuperuser --no-input || true) &&
+      poetry run python manage.py runserver 0.0.0.0:8000
+      "
+  
+
+volumes:
+  postgres_data:
