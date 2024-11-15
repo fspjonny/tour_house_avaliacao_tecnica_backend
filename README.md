@@ -1,2 +1,3 @@
-# tour_house_avaliacao_tecnica_backend
-Avaliação Técnica para Backend - TOUR HOUSE
+# Tour House - Avaliacão Técnica backend PL
+
+API Django Rest - Cadastro de Pessoas
