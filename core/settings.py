@@ -25,6 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'empresas',
+    'departamentos',
+    'funcionarios',
 ]
 
 REST_FRAMEWORK = {
@@ -130,3 +133,8 @@ SIMPLE_JWT = {
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
 }
+
+# Redirecionamentos de Login e Logout
+LOGIN_URL = 'login/'
+LOGIN_REDIRECT_URL = 'pessoas:home'
+LOGOUT_REDIRECT_URL = 'pessoas:home'
