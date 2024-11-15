@@ -25,6 +25,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'rest_framework_simplejwt',
+    'drf_spectacular',
     'empresas',
     'departamentos',
     'funcionarios',
@@ -37,6 +38,13 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
+}
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'ITMSS Recursos Humanos - Cadastro API',
+    'DESCRIPTION': 'API para gerenciamento de empresas, departamentos e funcionários',
+    'VERSION': '1.0.0',
 }
 
 MIDDLEWARE = [
@@ -126,15 +134,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Configurações opcionais para JWT (expiração e tempo de refresh)
+# Configurações para JWT
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=15),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ('Bearer',),
 }
-
-# Redirecionamentos de Login e Logout
-LOGIN_URL = 'login/'
-LOGIN_REDIRECT_URL = 'pessoas:home'
-LOGOUT_REDIRECT_URL = 'pessoas:home'
