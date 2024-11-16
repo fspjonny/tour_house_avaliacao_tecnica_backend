@@ -1,3 +1,4 @@
+import sys
 from pathlib import Path
 from decouple import config, Csv
 from datetime import timedelta
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework_simplejwt',
     'drf_spectacular',
+    'django_filters',
     'empresas',
     'departamentos',
     'funcionarios',
@@ -91,6 +93,16 @@ DATABASES = {
         "PORT": config("DATABASE_PORT", cast=int),
     }
 }
+
+# Banco de dados para rodar em um SQLite em memória durante os testes.
+if 'pytest' in sys.modules:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:',
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
