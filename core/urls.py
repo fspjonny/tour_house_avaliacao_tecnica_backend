@@ -10,7 +10,7 @@ from funcionarios.views import FuncionarioViewSet
 router = DefaultRouter()
 
 router.register('empresas', EmpresaViewSet)
-router.register('departamentos', DepartamentoViewSet)
+router.register('departamentos', DepartamentoViewSet) 
 router.register('funcionarios', FuncionarioViewSet)
 
 urlpatterns = [
