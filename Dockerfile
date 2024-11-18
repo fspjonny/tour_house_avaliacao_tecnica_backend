@@ -8,10 +8,8 @@ RUN pip install poetry
 
 RUN poetry config virtualenvs.in-project false
 
-RUN poetry install --no-interaction --no-ansi
+RUN poetry install --with dev --no-interaction --no-ansi
 
 COPY . /app
 
-EXPOSE 8000
 
-CMD ["poetry", "run", "python", "manage.py", "runserver", "0.0.0.0:8000"]
