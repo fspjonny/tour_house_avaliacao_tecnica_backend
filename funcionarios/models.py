@@ -7,7 +7,7 @@ class Funcionario(models.Model):
     telefone = models.CharField(max_length=20)
     data_nascimento = models.DateField()
     data_contratacao = models.DateField()
-    data_demissao = models.DateField(null=True, blank=True)
+    data_demissao = models.DateField(null=True, blank=True, default=None)
     endereco = models.CharField(max_length=255)
     cidade = models.CharField(max_length=100)
     estado = models.CharField(max_length=50)
