@@ -1,12 +1,13 @@
 from django.utils import timezone
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework import viewsets, filters
+from rest_framework import viewsets
 from .models import Funcionario
 from .serializers import FuncionarioSerializer
 from utils.permissions import IsAdminOrReadOnly
 from django_filters.rest_framework import DjangoFilterBackend, FilterSet
 from django_filters import CharFilter
+from utils.pagination import CustomPageNumberPagination
 
 
 # Definindo que o filtro deve encontrar qualquer ocorrência maiúscula ou minúscula no campo cidade e departamento.
@@ -23,6 +24,7 @@ class FuncionarioViewSet(viewsets.ModelViewSet):
     queryset = Funcionario.objects.all()
     serializer_class = FuncionarioSerializer
     permission_classes = [IsAdminOrReadOnly] # Só ADM tem permissão de inativar funcionários
+    pagination_class = CustomPageNumberPagination
 
     # Definindo filtros conforme especificado no desafio.
     filter_backends = [DjangoFilterBackend]

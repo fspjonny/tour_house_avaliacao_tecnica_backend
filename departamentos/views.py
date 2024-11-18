@@ -4,11 +4,13 @@ from rest_framework import viewsets
 from .models import Departamento
 from .serializers import DepartamentoSerializer
 from utils.permissions import IsAdminOrReadOnly
+from utils.pagination import CustomPageNumberPagination
 
 class DepartamentoViewSet(viewsets.ModelViewSet):
     queryset = Departamento.objects.all()
     serializer_class = DepartamentoSerializer
     permission_classes = [IsAdminOrReadOnly]
+    pagination_class = CustomPageNumberPagination
 
     # Definindo métodos HTTP permitidos
     http_method_names = ['get', 'post', 'put', 'delete']    

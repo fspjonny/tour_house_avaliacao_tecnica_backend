@@ -4,11 +4,13 @@ from rest_framework import viewsets
 from .models import Empresa
 from .serializers import EmpresaSerializer
 from utils.permissions import IsAdminOrReadOnly
+from utils.pagination import CustomPageNumberPagination
 
 class EmpresaViewSet(viewsets.ModelViewSet):
     queryset = Empresa.objects.all()
     serializer_class = EmpresaSerializer
     permission_classes = [IsAdminOrReadOnly] # Só ADM tem permissão de inativar empresas
+    pagination_class = CustomPageNumberPagination
 
     # Definindo métodos HTTP permitidos
     http_method_names = ['get', 'post', 'put', 'delete']    
