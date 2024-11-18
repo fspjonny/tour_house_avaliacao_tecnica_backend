@@ -49,8 +49,6 @@ SPECTACULAR_SETTINGS = {
     'TITLE': 'ITMSS Recursos Humanos - Cadastro API',
     'DESCRIPTION': 'API para gerenciamento de empresas, departamentos e funcionários',
     'VERSION': '1.0.0',
-    'SERVE_INCLUDE_SCHEMA': False,
-    'COMPONENT_SPLIT_REQUEST': True,
     'SWAGGER_UI_LANGUAGES': ['pt-BR'],
 }
 
