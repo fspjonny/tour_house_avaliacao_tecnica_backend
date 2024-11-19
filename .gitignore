@@ -5,6 +5,7 @@
 __pycache__
 __pycache__/
 __pypackages__/
+*.pyc
 *.py[cod]
 *$py.class
 
@@ -14,6 +15,7 @@ __pypackages__/
 coverage.xml
 .pytest_cache/
 cover/
+htmlcov
 
 *.log
 local_settings.py
