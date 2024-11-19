@@ -1,0 +1,800 @@
+openapi: 3.0.3
+info:
+  title: ITMSS Recursos Humanos - Cadastro API
+  version: 1.0.0
+  description: API para gerenciamento de empresas, departamentos e funcionários
+paths:
+  /api/departamentos/:
+    get:
+      operationId: departamentos_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - departamentos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedDepartamentoList'
+          description: ''
+    post:
+      operationId: departamentos_create
+      tags:
+      - departamentos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Departamento'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Departamento'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Departamento'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Departamento'
+          description: ''
+  /api/departamentos/{id}/:
+    get:
+      operationId: departamentos_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this departamento.
+        required: true
+      tags:
+      - departamentos
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Departamento'
+          description: ''
+    put:
+      operationId: departamentos_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this departamento.
+        required: true
+      tags:
+      - departamentos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Departamento'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Departamento'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Departamento'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Departamento'
+          description: ''
+    delete:
+      operationId: departamentos_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this departamento.
+        required: true
+      tags:
+      - departamentos
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/empresas/:
+    get:
+      operationId: empresas_list
+      parameters:
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - empresas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedEmpresaList'
+          description: ''
+    post:
+      operationId: empresas_create
+      tags:
+      - empresas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empresa'
+          description: ''
+  /api/empresas/{id}/:
+    get:
+      operationId: empresas_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this empresa.
+        required: true
+      tags:
+      - empresas
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empresa'
+          description: ''
+    put:
+      operationId: empresas_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this empresa.
+        required: true
+      tags:
+      - empresas
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Empresa'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Empresa'
+          description: ''
+    delete:
+      operationId: empresas_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this empresa.
+        required: true
+      tags:
+      - empresas
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/funcionarios/:
+    get:
+      operationId: funcionarios_list
+      parameters:
+      - in: query
+        name: cidade
+        schema:
+          type: string
+      - in: query
+        name: departamento
+        schema:
+          type: string
+      - name: page
+        required: false
+        in: query
+        description: A page number within the paginated result set.
+        schema:
+          type: integer
+      - name: page_size
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      tags:
+      - funcionarios
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PaginatedFuncionarioList'
+          description: ''
+    post:
+      operationId: funcionarios_create
+      tags:
+      - funcionarios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '201':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Funcionario'
+          description: ''
+  /api/funcionarios/{id}/:
+    get:
+      operationId: funcionarios_retrieve
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this funcionario.
+        required: true
+      tags:
+      - funcionarios
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Funcionario'
+          description: ''
+    put:
+      operationId: funcionarios_update
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this funcionario.
+        required: true
+      tags:
+      - funcionarios
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/Funcionario'
+        required: true
+      security:
+      - jwtAuth: []
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Funcionario'
+          description: ''
+    delete:
+      operationId: funcionarios_destroy
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        description: A unique integer value identifying this funcionario.
+        required: true
+      tags:
+      - funcionarios
+      security:
+      - jwtAuth: []
+      responses:
+        '204':
+          description: No response body
+  /api/schema/:
+    get:
+      operationId: schema_retrieve
+      description: |-
+        OpenApi3 schema for this API. Format can be selected via content negotiation.
+
+        - YAML: application/vnd.oai.openapi
+        - JSON: application/vnd.oai.openapi+json
+      parameters:
+      - in: query
+        name: format
+        schema:
+          type: string
+          enum:
+          - json
+          - yaml
+      - in: query
+        name: lang
+        schema:
+          type: string
+          enum:
+          - af
+          - ar
+          - ar-dz
+          - ast
+          - az
+          - be
+          - bg
+          - bn
+          - br
+          - bs
+          - ca
+          - ckb
+          - cs
+          - cy
+          - da
+          - de
+          - dsb
+          - el
+          - en
+          - en-au
+          - en-gb
+          - eo
+          - es
+          - es-ar
+          - es-co
+          - es-mx
+          - es-ni
+          - es-ve
+          - et
+          - eu
+          - fa
+          - fi
+          - fr
+          - fy
+          - ga
+          - gd
+          - gl
+          - he
+          - hi
+          - hr
+          - hsb
+          - hu
+          - hy
+          - ia
+          - id
+          - ig
+          - io
+          - is
+          - it
+          - ja
+          - ka
+          - kab
+          - kk
+          - km
+          - kn
+          - ko
+          - ky
+          - lb
+          - lt
+          - lv
+          - mk
+          - ml
+          - mn
+          - mr
+          - ms
+          - my
+          - nb
+          - ne
+          - nl
+          - nn
+          - os
+          - pa
+          - pl
+          - pt
+          - pt-br
+          - ro
+          - ru
+          - sk
+          - sl
+          - sq
+          - sr
+          - sr-latn
+          - sv
+          - sw
+          - ta
+          - te
+          - tg
+          - th
+          - tk
+          - tr
+          - tt
+          - udm
+          - ug
+          - uk
+          - ur
+          - uz
+          - vi
+          - zh-hans
+          - zh-hant
+      tags:
+      - schema
+      security:
+      - jwtAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/vnd.oai.openapi:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/yaml:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/vnd.oai.openapi+json:
+              schema:
+                type: object
+                additionalProperties: {}
+            application/json:
+              schema:
+                type: object
+                additionalProperties: {}
+          description: ''
+  /api/token/:
+    post:
+      operationId: token_create
+      description: |-
+        Takes a set of user credentials and returns an access and refresh JSON web
+        token pair to prove the authentication of those credentials.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenObtainPair'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenObtainPair'
+          description: ''
+  /api/token/refresh/:
+    post:
+      operationId: token_refresh_create
+      description: |-
+        Takes a refresh type JSON web token and returns an access type JSON web
+        token if the refresh token is valid.
+      tags:
+      - token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/TokenRefresh'
+        required: true
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TokenRefresh'
+          description: ''
+components:
+  schemas:
+    Departamento:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 100
+        centro_custo:
+          type: string
+          maxLength: 50
+        codigo_integracao:
+          type: string
+          maxLength: 50
+        ativo:
+          type: boolean
+        empresa:
+          type: integer
+      required:
+      - centro_custo
+      - codigo_integracao
+      - empresa
+      - id
+      - nome
+    Empresa:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome:
+          type: string
+          maxLength: 255
+        cnpj:
+          type: string
+          maxLength: 18
+        logradouro:
+          type: string
+          maxLength: 255
+        cidade:
+          type: string
+          maxLength: 100
+        estado:
+          type: string
+          maxLength: 50
+        pais:
+          type: string
+          maxLength: 50
+        ativo:
+          type: boolean
+      required:
+      - cidade
+      - cnpj
+      - estado
+      - id
+      - logradouro
+      - nome
+      - pais
+    Funcionario:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+        nome_completo:
+          type: string
+          maxLength: 255
+        email:
+          type: string
+          format: email
+          maxLength: 254
+        telefone:
+          type: string
+          maxLength: 20
+        data_nascimento:
+          type: string
+          format: date
+        data_contratacao:
+          type: string
+          format: date
+        data_demissao:
+          type: string
+          format: date
+          nullable: true
+        endereco:
+          type: string
+          maxLength: 255
+        cidade:
+          type: string
+          maxLength: 100
+        estado:
+          type: string
+          maxLength: 50
+        pais:
+          type: string
+          maxLength: 50
+        cep:
+          type: string
+          maxLength: 20
+        ativo:
+          type: boolean
+        departamento:
+          type: integer
+          nullable: true
+      required:
+      - cep
+      - cidade
+      - data_contratacao
+      - data_nascimento
+      - email
+      - endereco
+      - estado
+      - id
+      - nome_completo
+      - pais
+      - telefone
+    PaginatedDepartamentoList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Departamento'
+    PaginatedEmpresaList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Empresa'
+    PaginatedFuncionarioList:
+      type: object
+      required:
+      - count
+      - results
+      properties:
+        count:
+          type: integer
+          example: 123
+        next:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=4
+        previous:
+          type: string
+          nullable: true
+          format: uri
+          example: http://api.example.org/accounts/?page=2
+        results:
+          type: array
+          items:
+            $ref: '#/components/schemas/Funcionario'
+    TokenObtainPair:
+      type: object
+      properties:
+        username:
+          type: string
+          writeOnly: true
+        password:
+          type: string
+          writeOnly: true
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+          readOnly: true
+      required:
+      - access
+      - password
+      - refresh
+      - username
+    TokenRefresh:
+      type: object
+      properties:
+        access:
+          type: string
+          readOnly: true
+        refresh:
+          type: string
+      required:
+      - access
+      - refresh
+  securitySchemes:
+    jwtAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
