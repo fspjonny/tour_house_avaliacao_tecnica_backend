@@ -89,15 +89,19 @@ WSGI_APPLICATION = 'core.wsgi.application'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": config("DATABASE_NAME"),
-        "USER": config("DATABASE_USER"),
-        "PASSWORD": config("DATABASE_PASSWORD"),
-        "HOST": config("DATABASE_HOST"),
-        "PORT": config("DATABASE_PORT", cast=int),
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': config('POSTGRES_DB'),
+        'USER': config('POSTGRES_USER'),
+        'PASSWORD': config('POSTGRES_PASSWORD'),
+        'HOST': config('DATABASE_HOST'),
+        'PORT': config('DATABASE_PORT', cast=int),
+        'OPTIONS': {
+            'client_encoding': 'UTF8',
+        },        
     }
 }
+
 
 # Banco de dados para rodar em um SQLite em memória durante os testes.
 if 'pytest' in sys.modules:
