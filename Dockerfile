@@ -11,5 +11,3 @@ RUN poetry config virtualenvs.in-project false
 RUN poetry install --with dev --no-interaction --no-ansi
 
 COPY . /app
-
-

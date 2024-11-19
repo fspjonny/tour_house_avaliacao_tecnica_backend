@@ -8,6 +8,9 @@ services:
       - postgres_data:/var/lib/postgresql/data
     env_file:
       - .env
+    environment:
+      - LANG=en_US.UTF-8
+      - LC_ALL=en_US.UTF-8
 
   web:
     build: 
@@ -27,6 +30,7 @@ services:
       poetry run python manage.py makemigrations &&
       poetry run python manage.py migrate &&
       (poetry run python manage.py createsuperuser --no-input || true) &&
+      poetry run python manage.py popular_tabelas &&
       poetry run python manage.py runserver 0.0.0.0:8000
       "
   
