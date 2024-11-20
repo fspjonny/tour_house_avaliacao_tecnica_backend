@@ -146,7 +146,7 @@ Além disso, tem os arquivos de collectiosn que podem ser usados para testes:
 ## **✉️Contato**
 
 Em caso de dúvidas ou problemas, entre em contato:  
-- **E-mail**: [seuemail@email.com](mailto:fabio.silvapedro@gmail.com)
+- **E-mail**: [fabio.silvapedro@gmail.com](mailto:fabio.silvapedro@gmail.com)
 
 ---
 
