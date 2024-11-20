@@ -58,12 +58,17 @@ recomendo usar com a flag para melhor experiência na demonstração:
    ```bash
    poetry install --with dev
    ```
+4. Antes da execução com Docker, dependendo do sistema operacional,  
+indico ativar o shell do **Poetry**, para garantir a execução das tarefas:
+   ```bash
+   poetry shell
+   ```
 
 ---
 
 ## **🚀 Execução com Docker**  
 
-### **Subindo os contêineres**
+### **Subindo o contêiner**
 Certifique-se de que o Docker Desktop está ativo e execute:  
 ```bash
 task up
@@ -73,7 +78,7 @@ Os serviços serão executados em:
 - **API**: [http://localhost:8000](http://localhost:8000)  
 - **Swagger (documentação)**: [http://localhost:8000/api/doc/](http://localhost:8000/api/docs/)  
 
-### **Parando os contêineres**  
+### **Parando o contêiner**  
 Para encerrar e remover os contêineres, use:  
 ```bash
 task down
