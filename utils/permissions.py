@@ -2,12 +2,15 @@ from rest_framework.permissions import BasePermission, SAFE_METHODS
 
 class IsAdminOrReadOnly(BasePermission):
     """
-    Permite DELETE apenas para administradores (is_staff ou is_superuser).
-    Usuários comuns podem fazer apenas métodos de leitura (GET, PUT, PATCH, etc...).
+    Permite acesso de leitura (GET, OPTIONS, HEAD) apenas para usuários autenticados.
+    Métodos de escrita (POST, PUT, PATCH, DELETE) são restritos a administradores.
     """
 
     def has_permission(self, request, view):
-        # Métodos seguros (GET, HEAD, OPTIONS) são permitidos para todos
+        # Apenas usuários autenticados podem acessar
+        if not request.user.is_authenticated:
+            return False
+        # Métodos seguros (GET, HEAD, OPTIONS) são permitidos para usuários autenticados
         if request.method in SAFE_METHODS:
             return True
         # Para métodos de escrita, apenas administradores
