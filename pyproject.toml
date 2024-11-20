@@ -39,6 +39,14 @@ DJANGO_SETTINGS_MODULE = "core.settings"
 python_files = ["tests*.py", "test_*.py", "*_tests.py"]
 addopts = '-p no:warnings'
 
+[tool.coverage.run]
+omit = [
+    "tests/__init__.py",
+    "tests/conftest.py",
+]
+
 [tool.taskipy.tasks]
+up = {cmd='docker-compose up -d', help='- Monta o container Docker.'}
+down = {cmd='docker-compose down -v --rmi all --remove-orphans', help='- Desmonta e exclui o container Docker.'}
 test = {cmd='pytest -s -x --cov=tests -vv', help='- Executa os testes.'}
 post-test = {cmd='coverage html && python utils/coverage-report.py', help='- Exibe relatório de cobertura.'}
