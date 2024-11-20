@@ -87,7 +87,7 @@ task down
 
 ---
 
-## **Testes Automatizados**  
+## **🧪Testes Automatizados**  
 
 ### **Executar testes localmente**
 Execute os testes com o seguinte comando:
@@ -109,7 +109,7 @@ poetry run task test
 
 ---
 
-## **Estrutura do Projeto**
+## **⚙️Estrutura do Projeto**
 
 ```plaintext
 tour_house_avaliacao_tecnica_backend
