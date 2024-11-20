@@ -65,14 +65,14 @@ class FuncionarioFactory(factory.django.DjangoModelFactory):
     departamento = factory.SubFactory(DepartamentoFactory)
 
 
-def create_empresas(qtd=50):
+def create_empresas(qtd=25):
     empresas = []
     for _ in progressbar(range(qtd), "Criando empresas"):
         empresas.append(EmpresaFactory.build())
     Empresa.objects.bulk_create(empresas)
 
 
-def create_departamentos(qtd=50):
+def create_departamentos(qtd=20):
     empresas = list(Empresa.objects.all())
     departamentos = []
 
@@ -84,7 +84,7 @@ def create_departamentos(qtd=50):
     Departamento.objects.bulk_create(departamentos)
 
 
-def create_funcionarios(qtd=50):
+def create_funcionarios(qtd=150):
     departamentos = list(Departamento.objects.all())
     funcionarios = []
 
