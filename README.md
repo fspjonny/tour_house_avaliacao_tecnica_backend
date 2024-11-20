@@ -11,7 +11,7 @@ A API resolve dificuldades enfrentadas pela empresa no gerenciamento de funcion�
 - Cadastro, listagem, filtro e inativação de registros (funcionários, departamentos e empresas).
 - Vinculação de funcionários a departamentos e empresas.
 - Controle de acesso baseado em usuários (administradores têm permissão total, usuários comuns têm apenas leitura).
-- Nenhum registro pode ser deletado; em vez disso, são marcados como inativos.  
+- Nenhum registro poderá ser deletado, mas os administradores poderão ver os cadastros inativados e reativar.
 
 ---
 
