@@ -68,18 +68,19 @@ indico ativar o shell do **Poetry**, para garantir a execução das tarefas:
 
 ## **🚀 Execução com Docker**  
 
-### **Subindo o contêiner**
+### **Subindo o container**
 Certifique-se de que o Docker Desktop está ativo e execute:  
 ```bash
 task up
 ```  
+#### 🔔 Após a execução, o container ainda estará internamente fazendo a população das tabelas, aguarde alguns segundos ou acompanhe o processo no inspetor de logs do container, ele exibirá a mensagem: `"Tabelas populadas com sucesso!"`.  Estará pronto para uso.
 
 Os serviços serão executados em:  
 - **API**: [http://localhost:8000](http://localhost:8000)  
 - **Swagger (documentação)**: [http://localhost:8000/api/doc/](http://localhost:8000/api/docs/)  
 
-### **Parando o contêiner**  
-Para encerrar e remover os contêineres, use:  
+### **Parando o container**  
+Para encerrar e remover os containeres, use:  
 ```bash
 task down
 ```
@@ -100,7 +101,7 @@ Após os testes, você pode gerar um relatório de cobertura do coverage:
 task post-test
 ```
 
-### **Dentro do contêiner**
+### **Dentro do container**
 Se estiver no ambiente Docker, rode os testes com:
 ```bash
 poetry run task test
